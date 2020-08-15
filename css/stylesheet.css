@@ -1,0 +1,21 @@
+body {
+    font-size: 115%;
+    background: #00ffff;
+}
+.formular {
+    padding: 25px;
+    text-align: center;
+    margin-top: 50px;
+    line-height: 50px;
+    background: #00ced1;
+}
+.labelmagic {
+    margin-left: 40px;
+    float: left;
+}
+.casuta {
+    width: 75%;
+}
+textarea {
+    font-size: 115%;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Formular intrebari</title>
+        <link rel="stylesheet" href="css/stylesheet.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="formular">
+            <form id="form" target="_self" onsubmit="return postToGoogle();" action="" autocomplete="off">
+                <label for="intrebare" class="labelmagic">Question</label>
+                <textarea class="casuta" id="intrebare" name="entry.1000149602" placeholder="Question" rows="5" required></textarea><br/>
+                <label for="raspunsuri" class="labelmagic">Answers</label>
+                <textarea class="casuta" id="raspunsuri" name="entry.1639449594" placeholder="Answers" rows="5" required></textarea><br/>
+                <label for="ansbool">Answers(boolean)</label>
+                <input id="ansbool" name="entry.470431729" placeholder="Answers(boolean) ex:1100" type="number" required><br/>
+                <label for="ansnmb">Number of Answers</label>
+                <input id="ansnmb" name="entry.1560688924" placeholder="Number of Answers" type="number" required><br/>
+                <label for="curs">Course number</label>
+                <input id="curs" name="entry.1895214340" placeholder="Course" type="number" required><br/>
+                <label>Difficulty</label>
+                <label><input id="difficulty" name="entry.2061956312" type="radio" value="easy" required>easy</label>
+                <label><input id="difficulty" name="entry.2061956312" type="radio" value="medium" required>medium</label>
+                <label><input id="difficulty" name="entry.2061956312" type="radio" value="hard" required>hard</label><br/>
+                <label for="year">Year</label>
+                <input id="year" name="entry.1531048298" placeholder="Year" type="number" required><br/>
+                <button id="send" type="submit">Send Question</button>
+            </form>
+        </div>
+        <script>
+            function postToGoogle() {
+                var field1 = document.getElementById("intrebare").value;
+                var field2 = document.getElementById("raspunsuri").value;
+                var field3 = document.getElementById("ansbool").value;
+                var field4 = document.getElementById("ansnmb").value;
+                var field5 = document.getElementById("curs").value;
+                var field6 = document.getElementById("difficulty").value;
+                var field7 = document.getElementById("year").value;
+                if(field1 == ""){
+                    return false;
+                }
+                if(field2 == ""){
+                    return false;
+                }
+                if(field3 == ""){
+                    return false;
+                }
+                if(field4 == ""){
+                    return false;
+                }
+                if(field5 == ""){
+                    return false;
+                }
+                if(field6 == ""){
+                    return false;
+                }
+                if(field7 == ""){
+                    return false;
+                }
+                $.ajax({
+                    url: "https://docs.google.com/forms/d/e/1FAIpQLSdhHBIBOgiLxvs5do8UPttzyWRP1fRXNmZb5k-FOdDpMO3ryw/formResponse?",
+                    data: {"entry.1000149602": field1, "entry.1639449594": field2, "entry.470431729": field3, "entry.1560688924": field4, "entry.1895214340": field5, "entry.2061956312": field6, "entry.1531048298": field7},
+                    type: "POST",
+                    dataType: "xml",
+                    success: function(d)
+                    {
+                    },
+                    error: function(x, y, z)
+                    {
+                        $('#success-msg').show();
+                        $('#form').hide();
+                    }
+                });
+                return false;
+            }
+        </script>
+    </body>
+</html>
